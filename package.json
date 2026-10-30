@@ -11,6 +11,8 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "test:e2e": "playwright test",
+    "db:start": "\"%LOCALAPPDATA%\\DriveEasy\\start-postgres.cmd\"",
+    "db:stop": "\"%LOCALAPPDATA%\\DriveEasy\\stop-postgres.cmd\"",
     "db:check": "tsx --env-file=.env.local scripts/check-db.mts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",

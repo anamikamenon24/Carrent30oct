@@ -8,6 +8,13 @@ const envSchema = z.object({
   NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
   DATABASE_URL: z.url(),
   TEST_DATABASE_URL: z.url().optional(),
+  /**
+   * "pg": node-postgres over TCP (local Postgres, or Neon's pooled URL).
+   * "neon": @neondatabase/serverless over WebSockets (Vercel Functions + Neon). Same queries either way.
+   */
+  DATABASE_DRIVER: z.enum(["pg", "neon"]).default("pg"),
+  /** Max connections per process. Keep small on serverless. */
+  DATABASE_POOL_MAX: z.coerce.number().int().min(1).max(50).default(10),
 
   BETTER_AUTH_SECRET: z.string().min(32),
   BETTER_AUTH_URL: z.url(),
@@ -20,12 +27,15 @@ const envSchema = z.object({
     .enum(["true", "false"])
     .default("false")
     .transform((v) => v === "true"),
-  STRIPE_SECRET_KEY: z.string().optional(),
+  /** Test mode only: the Stripe adapter refuses anything but sk_test_ keys. */
+  STRIPE_SECRET_KEY: z.preprocess((v) => (v === "" ? undefined : v), z.string().startsWith("sk_test_").optional()),
 
-  STORAGE_PROVIDER: z.enum(["local", "s3"]).default("local"),
+  STORAGE_PROVIDER: z.enum(["local", "vercel-blob"]).default("local"),
   UPLOADS_DIR: z.string().default("./storage/uploads"),
-  S3_BUCKET: z.string().optional(),
-  S3_REGION: z.string().optional(),
+  BLOB_READ_WRITE_TOKEN: z.string().optional(),
+
+  /** How long an unpaid PENDING reservation holds the vehicle. */
+  RESERVATION_HOLD_MINUTES: z.coerce.number().int().min(1).max(120).default(15),
 
   SCHEDULER_PROVIDER: z.enum(["local", "cloud-cron"]).default("local"),
   CRON_SECRET: z.string().min(16),

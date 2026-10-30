@@ -17,12 +17,17 @@
     "db:check": "tsx --env-file=.env.local scripts/check-db.mts",
     "db:generate": "drizzle-kit generate",
     "db:migrate": "drizzle-kit migrate",
+    "db:migrate:deploy": "tsx --env-file-if-exists=.env.local scripts/migrate.mts",
+    "db:seed": "tsx --env-file-if-exists=.env.local scripts/seed.mts",
     "db:studio": "drizzle-kit studio",
     "job": "tsx --env-file=.env.local scripts/run-job.mts",
     "jobs:release-expired-holds": "tsx --env-file=.env.local scripts/run-job.mts release-expired-holds",
-    "fake:webhook": "tsx --env-file=.env.local scripts/fake-webhook.mts"
+    "fake:webhook": "tsx --env-file=.env.local scripts/fake-webhook.mts",
+    "admin:create": "tsx --env-file-if-exists=.env.local scripts/create-admin.mts"
   },
   "dependencies": {
+    "@neondatabase/serverless": "1.2.0",
+    "@vercel/blob": "2.8.2",
     "better-auth": "^1.7.14",
     "drizzle-orm": "^0.45.4",
     "next": "16.4.3",

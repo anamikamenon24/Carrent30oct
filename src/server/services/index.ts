@@ -1,7 +1,9 @@
 import { getEnv } from "@/server/config";
 import { FakePaymentProvider } from "./payments/fake";
+import { StripePaymentProvider } from "./payments/stripe";
 import type { PaymentProvider } from "./payments/types";
 import { LocalFileStorage } from "./storage/local";
+import { VercelBlobStorage } from "./storage/vercel-blob";
 import type { FileStorage } from "./storage/types";
 
 export type { PaymentProvider } from "./payments/types";
@@ -23,7 +25,12 @@ export function getPayments(): PaymentProvider {
       });
       break;
     case "stripe":
-      throw new Error("Stripe payments are not set up yet. Use PAYMENTS_PROVIDER=fake.");
+      if (!env.STRIPE_SECRET_KEY) throw new Error("STRIPE_SECRET_KEY (sk_test_...) is required for PAYMENTS_PROVIDER=stripe");
+      store.__payments = new StripePaymentProvider({
+        secretKey: env.STRIPE_SECRET_KEY,
+        webhookSecret: env.PAYMENTS_WEBHOOK_SECRET,
+      });
+      break;
   }
   return store.__payments;
 }
@@ -36,8 +43,9 @@ export function getStorage(): FileStorage {
     case "local":
       store.__storage = new LocalFileStorage(env.UPLOADS_DIR);
       break;
-    case "s3":
-      throw new Error("S3 storage is not set up yet. Use STORAGE_PROVIDER=local.");
+    case "vercel-blob":
+      store.__storage = new VercelBlobStorage(env.BLOB_READ_WRITE_TOKEN ?? "");
+      break;
   }
   return store.__storage;
 }

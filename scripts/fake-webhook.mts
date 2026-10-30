@@ -28,7 +28,7 @@ const isDeposit = type.startsWith("deposit.");
 const event = makeFakeEvent(type, {
   id: `${isDeposit ? "dh" : "ch"}_fake_cli`,
   amountCents: 5000,
-  currency: "gbp",
+  currency: "aed",
   status: type.split(".")[1] as never,
   ...(isDeposit ? { capturedCents: 0 } : { refundedCents: 0 }),
   metadata: { source: "cli" },

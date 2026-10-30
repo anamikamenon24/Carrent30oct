@@ -1,0 +1,9 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "installCommand": "pnpm install --frozen-lockfile",
+  "buildCommand": "pnpm db:migrate:deploy && pnpm build",
+  "crons": [
+    { "path": "/api/cron/release-expired-holds", "schedule": "*/5 * * * *" }
+  ]
+}

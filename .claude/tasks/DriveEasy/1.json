@@ -1,0 +1,10 @@
+{
+  "id": "1",
+  "subject": "Database schema, migrations, constraints & pricing engine",
+  "description": "Complete Neon PostgreSQL schema (17 tables), UUID PKs, integer fils, GiST exclusion constraints for non-overlapping rentals, atomic reservation transaction with hold TTL, and expired hold release job following docs/team-brief.md.",
+  "status": "completed",
+  "activeForm": "Database engine and schema completed.",
+  "owner": "database-engine-agent",
+  "blocks": ["3"],
+  "blockedBy": []
+}

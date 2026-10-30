@@ -1,0 +1,10 @@
+{
+  "id": "3",
+  "subject": "Automated QA test suites, concurrency checks & E2E verification",
+  "description": "Execute and maintain Vitest and Playwright test suites (migrations test on clean DB, concurrency reservation overlap tests, back-to-back rentals, pricing calculations, expired hold release, auth/authorization isolation, layout tests, and preview/production builds); report any defects to app-agent or database-engine-agent following docs/qa-test-plan.md.",
+  "status": "completed",
+  "activeForm": "QA test suites and verification completed.",
+  "owner": "qa-agent",
+  "blocks": [],
+  "blockedBy": ["1", "2"]
+}

@@ -1,0 +1,32 @@
+{
+  "name": "DriveEasy",
+  "description": "DriveEasy car rental engineering team following docs/team-brief.md with App Agent, Database Engine Agent, and QA Agent",
+  "createdAt": 1761842000000,
+  "leadAgentId": "team-lead@DriveEasy",
+  "members": [
+    {
+      "agentId": "team-lead@DriveEasy",
+      "name": "team-lead",
+      "agentType": "general-purpose",
+      "model": "claude-opus-4-6"
+    },
+    {
+      "agentId": "app-agent@DriveEasy",
+      "name": "app-agent",
+      "agentType": "app-agent",
+      "model": "claude-sonnet-4-6"
+    },
+    {
+      "agentId": "database-engine-agent@DriveEasy",
+      "name": "database-engine-agent",
+      "agentType": "database-engine-agent",
+      "model": "claude-sonnet-4-6"
+    },
+    {
+      "agentId": "qa-agent@DriveEasy",
+      "name": "qa-agent",
+      "agentType": "qa-agent",
+      "model": "claude-sonnet-4-6"
+    }
+  ]
+}

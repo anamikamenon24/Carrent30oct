@@ -1,26 +1,89 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+@theme {
+  --color-brand-50: #eefbf8;
+  --color-brand-100: #d5f4ec;
+  --color-brand-200: #aee8db;
+  --color-brand-300: #78d5c4;
+  --color-brand-400: #43b9a8;
+  --color-brand-500: #249e8e;
+  --color-brand-600: #187f74;
+  --color-brand-700: #17665f;
+  --color-brand-800: #16524d;
+  --color-brand-900: #164541;
+  --color-brand-950: #062826;
+
+  --color-sand-50: #fbf8f3;
+  --color-sand-100: #f5efe3;
+  --color-sand-200: #ebdec6;
+  --color-sand-300: #ddc59f;
+  --color-sand-400: #cfa877;
+  --color-sand-500: #c48f5a;
+
+  --color-ink: #0f1d1c;
+  --color-muted: #5b6b69;
+  --color-line: #e3e7e6;
+  --color-surface: #ffffff;
+  --color-canvas: #f6f7f6;
+}
+
+:root {
+  color-scheme: light;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Keyboard focus is always visible. */
+:where(a, button, input, select, textarea, summary):focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+}
+
+@utility card {
+  @apply rounded-2xl border border-line bg-surface shadow-sm;
+}
+@utility label {
+  @apply mb-1 block text-sm font-medium text-ink;
+}
+@utility input {
+  @apply block w-full rounded-lg border border-line bg-white px-3 py-2 text-sm text-ink shadow-xs placeholder:text-muted/70 focus:border-brand-500 focus:outline-none focus:ring-2 focus:ring-brand-500/20 disabled:cursor-not-allowed disabled:bg-canvas aria-invalid:border-red-500;
+}
+@utility btn {
+  @apply inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-semibold transition-colors disabled:cursor-not-allowed disabled:opacity-60;
+}
+@utility btn-primary {
+  @apply btn bg-brand-600 text-white hover:bg-brand-700;
+}
+@utility btn-secondary {
+  @apply btn border border-line bg-white text-ink hover:bg-canvas;
+}
+@utility btn-danger {
+  @apply btn bg-red-600 text-white hover:bg-red-700;
+}
+@utility btn-ghost {
+  @apply btn text-ink hover:bg-canvas;
+}
+@utility badge {
+  @apply inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium;
+}
+
+@layer components {
+  .table {
+    @apply w-full text-left text-sm;
+  }
+  .table th {
+    @apply border-b border-line bg-canvas px-3 py-2 text-xs font-semibold uppercase tracking-wide text-muted;
+  }
+  .table td {
+    @apply border-b border-line px-3 py-2 align-top;
+  }
 }

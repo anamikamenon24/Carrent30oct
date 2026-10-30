@@ -1,0 +1,10 @@
+{
+  "id": "2",
+  "subject": "Responsive car-rental UI, reservation flows & admin dashboard",
+  "description": "Build responsive car-rental web application pages (home, search, vehicle details, availability calendar, checkout breakdown in fils, driver licence upload, voucher with QR code, rentals management, and admin screens: fleet, branches, pricing & extras, damage reports) using Next.js 16 App Router and Tailwind CSS following docs/team-brief.md.",
+  "status": "completed",
+  "activeForm": "UI and admin pages completed.",
+  "owner": "app-agent",
+  "blocks": ["3"],
+  "blockedBy": []
+}
